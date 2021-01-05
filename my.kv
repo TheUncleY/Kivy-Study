@@ -1,0 +1,604 @@
+<CustomLabel@Label>:
+    text_size: self.size
+    valign: "middle"
+    padding_x: 5
+
+<CustomLabel1@Label>:
+    text_size: self.width, None
+    valign: "middle"
+    padding_x: 1
+
+<SingleLineTextInput@TextInput>:
+    multiline: False
+
+<GreenButton@Button>:
+    background_color: 1, 1, 1, 1
+    size_hint_y: None
+    height: self.parent.height * 0.1
+
+<NormalButton@Button>:
+    size_hint: 0.3, 0.1
+
+<CreateWindow>:
+    name: "Create"
+
+    user:user
+    password:password
+    email:email
+
+    FloatLayout:
+        cols:1
+
+        FloatLayout:
+            size: root.width, root.height/2
+
+            Label:
+                text: "Create an Account"
+                size_hint:0.8,0.2
+                pos_hint:{"x":0.1, "top":1}
+                font_size:(root.width**2 + root.height**2) / 14**4
+            Label:
+                pos_hint:{"x":0, "top":0.8}
+                size_hint:0.5,0.12
+                text: "User Name: "
+                font_size: (root.width**2 + root.height**2) / 14**4
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8}
+                size_hint: 0.4, 0.12
+                id:user
+                multiline: False
+                font_size: (root.width**2 + root.height**2) / 14**4
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0, "top":0.8-0.13}
+                text: "Password: "
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8-0.13}
+                size_hint: 0.4, 0.12
+                id: password
+                multiline: False
+                password: True
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0, "top":0.8-0.13*2}
+                text: "Email: "
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8-0.13*2}
+                size_hint: 0.4, 0.12
+                id: email
+                multiline: False
+                font_size: (root.width**2 + root.height**2) / 14**4
+            Button:
+                pos_hint:{"x":0.05,"y":0.05}
+                size_hint: 0.4, 0.15
+                text: "Submit"
+                font_size: (root.width**2 + root.height**2) / 14**4
+                on_release:
+                    root.manager.transition.direction = "left"
+                    root.submit()
+
+            Button:
+                pos_hint:{"x":0.55,"y":0.05}
+                size_hint: 0.4, 0.15
+                text: "Cancel"
+                font_size: (root.width**2 + root.height**2) / 14**4
+                on_release:
+                    root.manager.transition.direction = "left"
+                    root.cancel()
+
+<LoginWindow>:
+    name: "Login"
+
+    user:user
+    password:password
+
+    FloatLayout:
+        cols:1
+
+        FloatLayout:
+            size: root.width, root.height/2
+
+            Label:
+                text: "Login Account"
+                size_hint:0.8,0.2
+                pos_hint:{"x":0.1, "top":1}
+                font_size:(root.width**2 + root.height**2) / 14**4
+            Label:
+                pos_hint:{"x":0, "top":0.8}
+                size_hint:0.5,0.12
+                text: "User Name: "
+                font_size: (root.width**2 + root.height**2) / 14**4
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8}
+                size_hint: 0.4, 0.12
+                id:user
+                multiline: False
+                font_size: (root.width**2 + root.height**2) / 14**4
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0, "top":0.8-0.13*2}
+                text: "Password: "
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8-0.13*2}
+                size_hint: 0.4, 0.12
+                id: password
+                multiline: False
+                password: True
+                font_size: (root.width**2 + root.height**2) / 14**4
+            NormalButton:
+                pos_hint:{"x":0.05,"y":0.05}
+                font_size: (root.width**2 + root.height**2) / 14**4
+                text: "Login"
+                on_release:
+                    root.manager.transition.direction = "up"
+                    root.login()
+            NormalButton:
+                pos_hint:{"x":0.35,"y":0.05}
+                font_size: (root.width**2 + root.height**2) / 14**4
+                text: "Register"
+                on_release:
+                    root.manager.transition.direction = "right"
+                    root.register()
+            NormalButton:
+                pos_hint:{"x":0.65,"y":0.05}
+                font_size: (root.width**2 + root.height**2) / 14**4
+                text: "Forget Password"
+                on_release:
+                    root.manager.transition.direction = "left"
+                    root.forgot()
+
+<ForgetWindow>:
+    name: "Forget"
+
+    user:user
+    email:email
+
+    FloatLayout:
+        cols:1
+
+        FloatLayout:
+            size: root.width, root.height/2
+
+            Label:
+                text: "Forget Password"
+                size_hint:0.8,0.2
+                pos_hint:{"x":0.1, "top":1}
+                font_size:(root.width**2 + root.height**2) / 14**4
+            Label:
+                pos_hint:{"x":0, "top":0.8}
+                size_hint:0.5,0.12
+                text: "User Name: "
+                font_size: (root.width**2 + root.height**2) / 14**4
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8}
+                size_hint: 0.4, 0.12
+                id:user
+                multiline: False
+                font_size: (root.width**2 + root.height**2) / 14**4
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0, "top":0.8-0.13*2}
+                text: "Email: "
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8-0.13*2}
+                size_hint: 0.4, 0.12
+                id: email
+                multiline: False
+                password: True
+                font_size: (root.width**2 + root.height**2) / 14**4
+            Button:
+                pos_hint:{"x":0.01,"y":0.05}
+                size_hint: 0.5, 0.15
+                text: "Get Password"
+                font_size: (root.width**2 + root.height**2) / 14**4
+                on_release:
+                    root.check_pass()
+
+            Button:
+                pos_hint:{"x":0.5,"y":0.05}
+                size_hint: 0.5, 0.15
+                text: "Go Back"
+                font_size: (root.width**2 + root.height**2) / 14**4
+                on_release:
+                    root.manager.transition.direction = "right"
+                    app.root.current="Login"
+
+
+<MianWindow>:
+    name: "Main"
+    username :username
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint:0.2,1
+        Label:
+            text:"User:"
+            id:username
+            size_hint:0.2,0.2
+            pos_hint:{"x":0.1, "top":1}
+            font_size:(root.width**2 + root.height**2) / 14**4
+
+    FloatLayout:
+        cols:2
+
+        FloatLayout:
+            size: root.width, root.height/2
+
+            Label:
+                text: "Menu"
+                size_hint:0.8,0.2
+                pos_hint:{"x":0.1, "top":1}
+                font_size:(root.width**2 + root.height**2) / 14**4
+            Button:
+                pos_hint:{"x":0.1, "top":0.8}
+                size_hint: 0.8,0.2
+                text: "Add a pet"
+                font_size: (root.width**2 + root.height**2) / 14**4
+                on_release:
+                    root.manager.transition.direction = "left"
+                    root.Addpet()
+
+            Button:
+                pos_hint:{"x":0.1, "top":0.8-0.14}
+                size_hint: 0.8,0.2
+                text: "Print current weight of all pets"
+                font_size: (root.width**2 + root.height**2) / 14**4
+                on_release:
+                    root.manager.transition.direction = "left"
+                    root.Printpet()
+            Button:
+                pos_hint:{"x":0.1, "top":0.8-0.14*2}
+                size_hint: 0.8,0.2
+                text: "Print all pets and owners"
+                font_size: (root.width**2 + root.height**2) / 14**4
+                on_release:
+                    root.manager.transition.direction = "left"
+                    root.Printall()
+
+            Button:
+                pos_hint:{"x":0.1, "top":0.8-0.14*3}
+                size_hint: 0.8,0.2
+                text: "Logout Account"
+                font_size: (root.width**2 + root.height**2) / 14**4
+                on_release:
+                    root.logoff()
+
+
+            Button:
+                pos_hint:{"x":0.1, "top":0.8-0.14*4}
+                size_hint: 0.8,0.2
+                text: "Exit the program"
+                font_size: (root.width**2 + root.height**2) / 14**4
+                on_release:
+                    app.stop()
+
+
+
+
+<AddWindow>:
+    name: "Add"
+    mammal: mammal
+    mammal_yes: mammal_yes
+    mammal_no: mammal_no
+    fish: fish
+    litter: litter
+    condition: condition
+    amphibians: amphibians
+    venomous_yes: venomous_yes
+    venomous_no: venomous_no
+    length: length
+    nNamee: nNamee
+    dOB: dOB
+    weight: weight
+    owner: owner
+    address: address
+    FloatLayout:
+        cols:1
+
+        GridLayout:
+            cols: 2
+            padding : 30,30
+            spacing: 20, 20
+            row_default_height: '26dp'
+            Label:
+                text: 'Mammal'
+                text_size: self.size
+                valign: 'middle'
+
+            CheckBox:
+                group: 'check'
+                id : mammal
+                text: "Mammal"
+                on_active:
+                    root.Atype = self.text
+                    root.isMamMenu = not root.isMamMenu
+            BoxLayout: # <--- I want to show/hide this menu
+                id: Nammenu
+                orientation: 'horizontal'
+                width: self.parent.width*0.7  if root.isMamMenu else 0
+                height: self.parent.height * 0.1
+                size_hint: (None, 1)
+                opacity: 1 if root.isMamMenu else 0
+
+                CustomLabel1:
+                    text: 'litter size'
+                SingleLineTextInput:
+                    id: litter
+                    hint_text: "Numbers only"    # Numbers only
+                    input_filter: "int"
+                CustomLabel1:
+                    text: "Has Claws?"
+                CustomLabel1:
+                    text: 'Yes'
+
+                CheckBox:
+                    id: mammal_yes
+                    group: 'hasClaws'
+                    text: "Yes"
+                    on_active:
+                        root.hasClaws = self.text
+                CustomLabel1:
+                    text: 'No'
+
+                CheckBox:
+                    id: mammal_no
+                    group: 'hasClaws'
+                    text: "No"
+                    on_active:
+                        root.hasClaws = self.text
+            Label:
+            Label:
+                text: 'Fish'
+                text_size: self.size
+                valign: 'middle'
+
+            CheckBox:
+                group: 'check'
+                text: "Fish"
+                id: fish
+                on_active:
+                    root.Atype = self.text
+                    root.isFishMenu = not root.isFishMenu
+            BoxLayout: # <--- I want to show/hide this menu
+                id: fishmenu
+                orientation: 'horizontal'
+                width: self.parent.width*0.7 if root.isFishMenu else 0
+                height: self.parent.height * 0.1
+                size_hint: (None, 1)
+                opacity: 1 if root.isFishMenu else 0
+
+                CustomLabel1:
+                    text: 'scale condition'
+
+                SingleLineTextInput:
+                    id: condition
+                    hint_text: "Enter word or number"
+
+                CustomLabel1:
+                    text: 'length'
+
+                SingleLineTextInput:
+                    id: length
+                    hint_text: "Float"    # Numbers only
+                    input_filter: "float"
+
+            Label:
+            Label:
+                text: 'Amphibians'
+                text_size: self.size
+                valign: 'middle'
+
+            CheckBox:
+                group: 'check'
+                id : amphibians
+                text: "Amphibians"
+                on_active:
+                    root.Atype = self.text
+                    #root.if_Amphibian(self.active)
+                    root.isAmphibians = not root.isAmphibians
+
+            BoxLayout: # <--- I want to show/hide this menu
+                id: menu
+                orientation: 'horizontal'
+                width: self.parent.width*0.7 if root.isAmphibians else 0
+                height: self.parent.height * 0.1
+                size_hint: (None, 1)
+                opacity: 1 if root.isAmphibians else 0
+
+                CustomLabel1:
+                    text: "Is Venomous?"
+
+                CustomLabel1:
+                    text: 'Yes'
+                CheckBox:
+                    id: venomous_yes
+                    group: 'is_ven'
+                    text: "Yes"
+                    on_active:
+                        root.isVenomous = self.text
+                CustomLabel1:
+                    text: 'No'
+                CheckBox:
+                    id: venomous_no
+                    group: 'is_ven'
+                    text: "No"
+                    on_active:
+                        root.isVenomous = self.text
+            Label:
+
+            CustomLabel:
+                text: 'Name'
+                text_size: self.size
+                valign: 'middle'
+
+            SingleLineTextInput:
+                id: nNamee
+                hint_text: "Enter word or number"
+
+            CustomLabel:
+                text: 'Date of Birth(year,month,date)'
+                text_size: self.size
+                valign: 'middle'
+
+            SingleLineTextInput:
+                id: dOB
+                hint_text: "YYYY/MM/DD"
+
+            CustomLabel:
+                text: 'Birth Weight'
+                text_size: self.size
+                valign: 'middle'
+
+            SingleLineTextInput:
+                id: weight
+                hint_text: "Float"    # Numbers only
+                input_filter: "float"
+
+            CustomLabel:
+                text: "Owner's Name"
+                text_size: self.size
+                valign: 'middle'
+
+            SingleLineTextInput:
+                id: owner
+                hint_text: "Enter word or number"
+
+            CustomLabel:
+                text: "Owner's Address"
+                text_size: self.size
+                valign: 'middle'
+
+            SingleLineTextInput:
+                id: address
+                hint_text: "Enter word or number"
+
+            GreenButton:
+                text: 'Ok'
+                on_press:
+                    root.insert_data(litter.text,condition.text,length.text,nNamee.text,dOB.text,weight.text,owner.text,address.text)
+                    root.clearn()
+
+            GreenButton:
+                text: 'Cancel'
+                on_press:
+                    root.clearn()
+                    root.manager.transition.direction = "right"
+                    app.root.current="Main"
+
+
+
+
+
+
+<PrintWindow>:
+    name: "Print"
+
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 10
+        padding: 50
+        canvas.before:
+            Color:
+                rgba: (1, 1, 1, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        size_hint: 1, 1
+
+        ScrollView:
+            size_hint: None, None
+            size: 500, 500
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            GridLayout:
+                cols: 1
+                padding: 30
+                spacing: 30
+                height: self.minimum_height
+                size_hint: 1, None
+                do_scroll_x: False
+                id: result
+
+    BoxLayout:
+        orientation: "horizontal"
+        spacing: 10
+        padding: 50
+        pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+        size_hint: 0.5, 0.5
+        Button:
+            pos_hint:{"x":0.1, "top":0.8-0.14*3}
+            size_hint: 0.8,0.2
+            text: "Get Result"
+            font_size: (root.width**2 + root.height**2) / 14**4
+            on_press:
+                root.printdata()
+        Button:
+            pos_hint:{"x":0.1, "top":0.8-0.14*3}
+            size_hint: 0.8,0.2
+            text: "Go Back"
+            font_size: (root.width**2 + root.height**2) / 14**4
+            on_press:
+                root.clearn()
+                root.manager.transition.direction = "right"
+                app.root.current="Main"
+
+
+<AllWindow>:
+    name: "All"
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 10
+        padding: 50
+        canvas.before:
+            Color:
+                rgba: (1, 1, 1, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        size_hint: 1, 1
+
+        ScrollView:
+            size_hint: None, None
+            size: 750, 500
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            GridLayout:
+                cols: 1
+                padding: 30
+                spacing: 30
+                height: self.minimum_height
+                size_hint: 1, None
+                do_scroll_x: False
+                id: Allresult
+
+    BoxLayout:
+        orientation: "horizontal"
+        spacing: 10
+        padding: 50
+        pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+        size_hint: 0.5, 0.5
+        Button:
+            pos_hint:{"x":0.1, "top":0.8-0.14*3}
+            size_hint: 0.8,0.2
+            text: "Get Result"
+            font_size: (root.width**2 + root.height**2) / 14**4
+            on_press:
+                root.printall()
+        Button:
+            pos_hint:{"x":0.1, "top":0.8-0.14*3}
+            size_hint: 0.8,0.2
+            text: "Go Back"
+            font_size: (root.width**2 + root.height**2) / 14**4
+            on_press:
+                root.clearn()
+                root.manager.transition.direction = "right"
+                app.root.current="Main"
